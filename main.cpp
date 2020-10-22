@@ -66,10 +66,13 @@ struct T
 
 struct Pajamas                                //4
 {
-    T* compare(T* a, T* b) //5
+    T* compare(T* a, T* b)                  //5
     {
-        if( a->value < b->value ) return a;
-        if( a->value > b->value ) return b;
+        if ( a != nullptr && b != nullptr)
+        {
+            if( a->value < b->value ) return a;
+            if( a->value > b->value ) return b;
+        }
         return nullptr;
     }
 };
@@ -79,15 +82,22 @@ struct U
     float crown { 0.f }, jewel { 0.f };
     float altMorph(float* updatedAccessories)      //12
     {
-        std::cout << "U's crown value: " << this->crown << std::endl;
-        this->crown = *updatedAccessories;
-        std::cout << "U's crown updated value: " << this->crown << std::endl;
-        while( std::abs(this->crown - this->jewel) > 0.001f )
-        {
-            this->jewel += (this->crown - this->jewel) / 1000.f ;
+        if (updatedAccessories != nullptr)
+        { 
+            std::cout << "U's crown value: " << this->crown << std::endl;
+            this->crown = *updatedAccessories;
+            std::cout << "U's crown updated value: " << this->crown << std::endl;
+            while( std::abs(this->crown - this->jewel) > 0.001f )
+            {
+                this->jewel += (this->crown - this->jewel) / 1000.f ;
+            }
+            std::cout << "U's jewel updated value: " << this->jewel << std::endl;
         }
-        std::cout << "U's jewel updated value: " << this->jewel << std::endl;
-        return this->jewel * this->crown;
+        else 
+        {
+            std::cout << "nullptr alert! returning jewel * crown (not updated)..." << std::endl;  
+        }
+        return this->jewel * this->crown; 
     }
 };
 
@@ -95,18 +105,23 @@ struct Hope
 {
     static float crownJewelMorph(U* that, float* updatedAccessories )        //10
     {
-        std::cout << "U's crown value: " << that->crown << std::endl;
-        that->crown = *updatedAccessories;
-        std::cout << "U's crown updated value: " << that->crown << std::endl;
-        while( std::abs(that->crown - that->jewel) > 0.001f )
+        if ( that != nullptr && updatedAccessories != nullptr)
         {
-            /*
-             write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
-             */
-            that->jewel += (that->crown - that->jewel) / 1000.f ;
+            std::cout << "U's crown value: " << that->crown << std::endl;
+            that->crown = *updatedAccessories;
+            std::cout << "U's crown updated value: " << that->crown << std::endl;
+            while( std::abs(that->crown - that->jewel) > 0.001f )
+            {
+                /*
+                write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
+                */
+                that->jewel += (that->crown - that->jewel) / 1000.f ;
+            }
+            std::cout << "U's jewel updated value: " << that->jewel << std::endl;
+            return that->jewel * that->crown;
         }
-        std::cout << "U's jewel updated value: " << that->jewel << std::endl;
-        return that->jewel * that->crown;
+        std::cout << "one or both arguments is nullptr! returning 0.f" << std::endl;
+        return 0.f;
     }
 };
         
