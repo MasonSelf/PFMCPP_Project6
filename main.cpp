@@ -76,7 +76,7 @@ struct Pajamas                                //4
 
 struct U
 {
-    float crown { 0 }, jewel { 0 };
+    float crown { 0.f }, jewel { 0.f };
     float altMorph(float* updatedAccessories)      //12
     {
         std::cout << "U's crown value: " << this->crown << std::endl;
@@ -84,7 +84,7 @@ struct U
         std::cout << "U's crown updated value: " << this->crown << std::endl;
         while( std::abs(this->crown - this->jewel) > 0.001f )
         {
-            this->jewel += (this->crown - this->jewel) / 1000 ;
+            this->jewel += (this->crown - this->jewel) / 1000.f ;
         }
         std::cout << "U's jewel updated value: " << this->jewel << std::endl;
         return this->jewel * this->crown;
@@ -103,7 +103,7 @@ struct Hope
             /*
              write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
              */
-            that->jewel += (that->crown - that->jewel) / 1000 ;
+            that->jewel += (that->crown - that->jewel) / 1000.f ;
         }
         std::cout << "U's jewel updated value: " << that->jewel << std::endl;
         return that->jewel * that->crown;
