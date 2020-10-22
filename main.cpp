@@ -83,7 +83,7 @@ struct U
     }
 };
 
-struct <#structname2#>
+struct Hope
 {
     static <#returntype#> <#staticFunctionA#>(U* that, <#type name#>* <#updatedValue#> )        //10
     {
@@ -128,7 +128,7 @@ int main()
     
     U <#name3#>;
     float updatedValue = 5.f;
-    std::cout << "[static func] <#name3#>'s multiplied values: " << <#structname2#>::<#staticFunctionA#>( , ) << std::endl;                  //11
+    std::cout << "[static func] <#name3#>'s multiplied values: " << Hope::<#staticFunctionA#>( , ) << std::endl;                  //11
     
     U <#name4#>;
     std::cout << "[member func] <#name4#>'s multiplied values: " << <#name4#>.<#memberFunction#>( &updatedValue ) << std::endl;
