@@ -79,7 +79,15 @@ struct U
     float crown { 0 }, jewel { 0 };
     float altMorph(float* updatedAccessories)      //12
     {
-        
+        std::cout << "U's crown value: " << this->crown << std::endl;
+        this->crown = *updatedAccessories;
+        std::cout << "U's crown updated value: " << this->crown << std::endl;
+        while( std::abs(this->crown - this->jewel) > 0.001f )
+        {
+            this->jewel += (this->crown - this->jewel) / 1000 ;
+        }
+        std::cout << "U's jewel updated value: " << this->jewel << std::endl;
+        return this->jewel * this->crown;
     }
 };
 
@@ -131,7 +139,7 @@ int main()
     std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( &Sun , &updatedValue ) << std::endl;                  //11
     
     U Moon;
-    //std::cout << "[member func] Moon's multiplied values: " << Moon.<#memberFunction#>( &updatedValue ) << std::endl;
+    std::cout << "[member func] Moon's multiplied values: " << Moon.altMorph( &updatedValue ) << std::endl;
 }
 
         
