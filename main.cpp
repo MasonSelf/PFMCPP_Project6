@@ -77,7 +77,7 @@ struct Pajamas                                //4
 struct U
 {
     float crown { 0 }, jewel { 0 };
-    <#returnType#> <#memberFunction#>(<#type name#>* updatedAccessories)      //12
+    float altMorph(float* updatedAccessories)      //12
     {
         
     }
@@ -85,17 +85,17 @@ struct U
 
 struct Hope
 {
-    static <#returntype#> crownJewelMorph(U* that, <#type name#>* updatedAccessories )        //10
+    static float crownJewelMorph(U* that, float* updatedAccessories )        //10
     {
         std::cout << "U's crown value: " << that->crown << std::endl;
-        that->crown = updatedAccessories;
+        that->crown = *updatedAccessories;
         std::cout << "U's crown updated value: " << that->crown << std::endl;
-        while( std::abs(that->jewel - that->crown) > 0.001f )
+        while( std::abs(that->crown - that->jewel) > 0.001f )
         {
             /*
              write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
              */
-            that->jewel += ;
+            that->jewel += (that->crown - that->jewel) / 1000 ;
         }
         std::cout << "U's jewel updated value: " << that->jewel << std::endl;
         return that->jewel * that->crown;
@@ -128,10 +128,10 @@ int main()
     
     U Sun;
     float updatedValue = 5.f;
-    std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( , ) << std::endl;                  //11
+    std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( &Sun , &updatedValue ) << std::endl;                  //11
     
     U Moon;
-    std::cout << "[member func] Moon's multiplied values: " << Moon.<#memberFunction#>( &updatedValue ) << std::endl;
+    //std::cout << "[member func] Moon's multiplied values: " << Moon.<#memberFunction#>( &updatedValue ) << std::endl;
 }
 
         
