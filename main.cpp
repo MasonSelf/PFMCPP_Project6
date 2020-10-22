@@ -76,8 +76,8 @@ struct Pajamas                                //4
 
 struct U
 {
-    float <#name1#> { 0 }, <#name2#> { 0 };
-    <#returnType#> <#memberFunction#>(<#type name#>* <#updatedValue#>)      //12
+    float crown { 0 }, jewel { 0 };
+    <#returnType#> <#memberFunction#>(<#type name#>* updatedAccessories)      //12
     {
         
     }
@@ -85,20 +85,20 @@ struct U
 
 struct Hope
 {
-    static <#returntype#> <#staticFunctionA#>(U* that, <#type name#>* <#updatedValue#> )        //10
+    static <#returntype#> crownJewelMorph(U* that, <#type name#>* updatedAccessories )        //10
     {
-        std::cout << "U's <#name1#> value: " << that-><#name1#> << std::endl;
-        that-><#name1#> = <#updatedValue#>;
-        std::cout << "U's <#name1#> updated value: " << that-><#name1#> << std::endl;
-        while( std::abs(that-><#name2#> - that-><#name1#>) > 0.001f )
+        std::cout << "U's crown value: " << that->crown << std::endl;
+        that->crown = updatedAccessories;
+        std::cout << "U's crown updated value: " << that->crown << std::endl;
+        while( std::abs(that->jewel - that->crown) > 0.001f )
         {
             /*
              write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
              */
-            that-><#name2#> += ;
+            that->jewel += ;
         }
-        std::cout << "U's <#name2#> updated value: " << that-><#name2#> << std::endl;
-        return that-><#name2#> * that-><#name1#>;
+        std::cout << "U's jewel updated value: " << that->jewel << std::endl;
+        return that->jewel * that->crown;
     }
 };
         
@@ -126,12 +126,12 @@ int main()
     if ( smaller != nullptr )
         std::cout << "the smaller one is << " << smaller->name << std::endl; //9
     
-    U <#name3#>;
+    U Sun;
     float updatedValue = 5.f;
-    std::cout << "[static func] <#name3#>'s multiplied values: " << Hope::<#staticFunctionA#>( , ) << std::endl;                  //11
+    std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( , ) << std::endl;                  //11
     
-    U <#name4#>;
-    std::cout << "[member func] <#name4#>'s multiplied values: " << <#name4#>.<#memberFunction#>( &updatedValue ) << std::endl;
+    U Moon;
+    std::cout << "[member func] Moon's multiplied values: " << Moon.<#memberFunction#>( &updatedValue ) << std::endl;
 }
 
         
