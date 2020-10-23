@@ -56,46 +56,72 @@ Purpose:  This project will show you the difference between member functions and
 #include <string>
 struct T
 {
-    T(<#type name#> v, const char* <#variable name#>)   //1
-    //2
-    //3
+    T(int v, const char* homeSlice) :   //1
+    value(v),                           //2
+    name(homeSlice)                        //3
+    {}
+    int value;
+    std::string name;
 };
 
-struct <#structName1#>                                //4
+struct Pajamas                                //4
 {
-    <#type name#> compare(<#type name#> a, <#type name#> b) //5
+    T* compare(T* a, T* b)                  //5
     {
-        if( a->value < b->value ) return a;
-        if( a->value > b->value ) return b;
+        if ( a != nullptr && b != nullptr)
+        {
+            if( a->value < b->value ) return a;
+            if( a->value > b->value ) return b;
+        }
         return nullptr;
     }
 };
 
 struct U
 {
-    float <#name1#> { 0 }, <#name2#> { 0 };
-    <#returnType#> <#memberFunction#>(<#type name#>* <#updatedValue#>)      //12
+    float crown { 0.f }, jewel { 0.f };
+    float altMorph(float* updatedAccessories)      //12
     {
-        
+        if (updatedAccessories != nullptr)
+        { 
+            std::cout << "U's crown value: " << this->crown << std::endl;
+            this->crown = *updatedAccessories;
+            std::cout << "U's crown updated value: " << this->crown << std::endl;
+            while( std::abs(this->crown - this->jewel) > 0.001f )
+            {
+                this->jewel += (this->crown - this->jewel) / 1000.f ;
+            }
+            std::cout << "U's jewel updated value: " << this->jewel << std::endl;
+        }
+        else 
+        {
+            std::cout << "nullptr alert! returning jewel * crown (not updated)..." << std::endl;  
+        }
+        return this->jewel * this->crown; 
     }
 };
 
-struct <#structname2#>
+struct Hope
 {
-    static <#returntype#> <#staticFunctionA#>(U* that, <#type name#>* <#updatedValue#> )        //10
+    static float crownJewelMorph(U* that, float* updatedAccessories )        //10
     {
-        std::cout << "U's <#name1#> value: " << that-><#name1#> << std::endl;
-        that-><#name1#> = <#updatedValue#>;
-        std::cout << "U's <#name1#> updated value: " << that-><#name1#> << std::endl;
-        while( std::abs(that-><#name2#> - that-><#name1#>) > 0.001f )
+        if ( that != nullptr && updatedAccessories != nullptr)
         {
-            /*
-             write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
-             */
-            that-><#name2#> += ;
+            std::cout << "U's crown value: " << that->crown << std::endl;
+            that->crown = *updatedAccessories;
+            std::cout << "U's crown updated value: " << that->crown << std::endl;
+            while( std::abs(that->crown - that->jewel) > 0.001f )
+            {
+                /*
+                write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
+                */
+                that->jewel += (that->crown - that->jewel) / 1000.f ;
+            }
+            std::cout << "U's jewel updated value: " << that->jewel << std::endl;
+            return that->jewel * that->crown;
         }
-        std::cout << "U's <#name2#> updated value: " << that-><#name2#> << std::endl;
-        return that-><#name2#> * that-><#name1#>;
+        std::cout << "one or both arguments is nullptr! returning 0.f" << std::endl;
+        return 0.f;
     }
 };
         
@@ -115,19 +141,20 @@ struct <#structname2#>
 
 int main()
 {
-    T <#name1#>( , );                                             //6
-    T <#name2#>( , );                                             //6
+    T digniT( 0, "dignity" );                           //6
+    T prosperiT( 1, "prosperity" );                     //6
     
-    <#structName1#> f;                                            //7
-    auto* smaller = f.compare( , );                              //8
-    std::cout << "the smaller one is << " << smaller->name << std::endl; //9
+    Pajamas f;                                                          //7
+    auto* smaller = f.compare( &digniT , &prosperiT );                   //8
+    if ( smaller != nullptr )
+        std::cout << "the smaller one is << " << smaller->name << std::endl; //9
     
-    U <#name3#>;
+    U Sun;
     float updatedValue = 5.f;
-    std::cout << "[static func] <#name3#>'s multiplied values: " << <#structname2#>::<#staticFunctionA#>( , ) << std::endl;                  //11
+    std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( &Sun , &updatedValue ) << std::endl;                  //11
     
-    U <#name4#>;
-    std::cout << "[member func] <#name4#>'s multiplied values: " << <#name4#>.<#memberFunction#>( &updatedValue ) << std::endl;
+    U Moon;
+    std::cout << "[member func] Moon's multiplied values: " << Moon.altMorph( &updatedValue ) << std::endl;
 }
 
         
