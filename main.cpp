@@ -33,9 +33,9 @@ struct Pajamas
 {
     T* compare(T& a, T& b)                  
     {
-        if( &a.value < &b.value ) 
+        if( a.value < b.value ) 
             return &a;
-        if( &a.value > &b.value ) 
+        if( a.value > b.value ) 
             return &b;
         return nullptr;
     }
@@ -46,15 +46,15 @@ struct U
     float crown { 0.f }, jewel { 0.f };
     float altMorph(float& updatedAccessories)      
     {
-        std::cout << "U's crown value: " << this->crown << std::endl;
-        this->crown = updatedAccessories;
-        std::cout << "U's crown updated value: " << this->crown << std::endl;
-        while( std::abs(this->crown - this->jewel) > 0.001f )
+        std::cout << "U's crown value: " << crown << std::endl;
+        crown = updatedAccessories;
+        std::cout << "U's crown updated value: " << crown << std::endl;
+        while( std::abs(crown - jewel) > 0.001f )
         {
-            this->jewel += (this->crown - this->jewel) / 1000.f ;
+            jewel += (crown - jewel) / 1000.f ;
         }
-        std::cout << "U's jewel updated value: " << this->jewel << std::endl;
-        return this->jewel * this->crown; 
+        std::cout << "U's jewel updated value: " << jewel << std::endl;
+        return jewel * crown; 
     }
 };
 
@@ -97,15 +97,16 @@ int main()
     T prosperiT( 1, "prosperity" );                     
     
     Pajamas f;                                                          
-    auto smaller = f.compare( digniT , prosperiT );                   
-    std::cout << "the smaller one is << " << smaller->name << std::endl; 
-    
-    U Sun;
+    auto smaller = f.compare( digniT , prosperiT );         if ( smaller != nullptr )
+    {          
+        std::cout << "the smaller one is << " << smaller->name << std::endl; 
+    }
+    U sun;
     float updatedValue = 5.f;
-    std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( Sun , updatedValue ) << std::endl;                  
+    std::cout << "[static func] Sun's multiplied values: " << Hope::crownJewelMorph( sun , updatedValue ) << std::endl;                  
     
-    U Moon;
-    std::cout << "[member func] Moon's multiplied values: " << Moon.altMorph( updatedValue ) << std::endl;
+    U moon;
+    std::cout << "[member func] Moon's multiplied values: " << moon.altMorph( updatedValue ) << std::endl;
 }
 
         
