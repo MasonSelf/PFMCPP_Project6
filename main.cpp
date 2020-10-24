@@ -97,7 +97,8 @@ int main()
     T prosperiT( 1, "prosperity" );                     
     
     Pajamas f;                                                          
-    auto smaller = f.compare( digniT , prosperiT );         if ( smaller != nullptr )
+    auto smaller = f.compare( digniT , prosperiT );         
+    if ( smaller != nullptr )
     {          
         std::cout << "the smaller one is << " << smaller->name << std::endl; 
     }
