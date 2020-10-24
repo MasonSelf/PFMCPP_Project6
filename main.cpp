@@ -51,7 +51,7 @@ struct U
         std::cout << "U's crown updated value: " << crown << std::endl;
         while( std::abs(crown - jewel) > 0.001f )
         {
-            jewel += (crown - jewel) / 1000.f ;
+            jewel += (crown - jewel) / 1000.f;
         }
         std::cout << "U's jewel updated value: " << jewel << std::endl;
         return jewel * crown; 
@@ -70,7 +70,7 @@ struct Hope
             /*
             write something that makes the distance between that-><#name2#> and that-><#name1#> get smaller
             */
-            that.jewel += (that.crown - that.jewel) / 1000.f ;
+            that.jewel += (that.crown - that.jewel) / 1000.f;
         }
         std::cout << "U's jewel updated value: " << that.jewel << std::endl;
         return that.jewel * that.crown;
